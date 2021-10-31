@@ -12,7 +12,7 @@ curl -o /tmp/calculate_db.py "https://raw.githubusercontent.com/MiSTer-devel/Dis
 chmod +x /tmp/calculate_db.py
 
 update_jtcores() {
-    local OUTPUT_FOLDER="${1}"
+    local OUTPUT_FOLDER="$(cd ${1} ; pwd)"
     local PUSH_COMMAND="${2:-}"
 
     fetch_core_urls
