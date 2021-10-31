@@ -17,5 +17,5 @@ db_url = https://raw.githubusercontent.com/jotego/jtcores_mister/main/jtbindb.js
 
 ### Other platforms
 
-For platforms other than MiSTerm please check the [jtbin](https://github.com/jotego/jtbin) repository.
+For platforms other than MiSTer please check the [jtbin](https://github.com/jotego/jtbin) repository.
 
