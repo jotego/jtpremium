@@ -18,7 +18,11 @@ jobs:
         ref: develop
   
     - name: update jtcores
-      run: ./.github/update_jtcores.sh . --push
+      run: |
+        set -euo pipefail
+        git config --global user.email "theypsilon@gmail.com"
+        git config --global user.name "The CI/CD Bot"
+        ./.github/update_jtcores.sh . --push
       env:
         DB_ID: jtcores
         DB_URL: https://raw.githubusercontent.com/theypsilon/JT_Cores_MiSTer/jtbin/jtbindb.json.zip
