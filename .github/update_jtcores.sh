@@ -32,7 +32,8 @@ update_jtcores() {
                 continue
             fi
 
-            copy_file "${folder}/releases/${LAST_RELEASE_FILE}" "${OUTPUT_FOLDER}/_Arcade/cores/$(basename ${LAST_RELEASE_FILE})"
+            echo copy_file "${TMP_FOLDER}/${folder}/releases/${LAST_RELEASE_FILE}" "${OUTPUT_FOLDER}/_Arcade/cores/$(basename ${LAST_RELEASE_FILE})"
+            copy_file "${TMP_FOLDER}/${folder}/releases/${LAST_RELEASE_FILE}" "${OUTPUT_FOLDER}/_Arcade/cores/$(basename ${LAST_RELEASE_FILE})"
         done
     done
 
@@ -41,12 +42,14 @@ update_jtcores() {
     pushd ${TMP_FOLDER}
 
     for mra in $(find mra -type f -iname '*.mra' -not -path "*/_alternatives/*") ; do
+        echo copy_file "${mra}" "${OUTPUT_FOLDER}/_Arcade/$(basename ${mra})"
         copy_file "${mra}" "${OUTPUT_FOLDER}/_Arcade/$(basename ${mra})"
     done
 
     pushd mra
 
     for alts in $(find _alternatives/ -type f -iname '*.mra') ; do
+        echo copy_file "${alts}" "${OUTPUT_FOLDER}/_Arcade/${alts}"
         copy_file "${alts}" "${OUTPUT_FOLDER}/_Arcade/${alts}"
     done
 

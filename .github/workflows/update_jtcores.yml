@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Install detox
+    - name: install detox
       run: sudo apt-get install detox
 
     - uses: actions/checkout@v2
       with:
         ref: develop
   
-    - name: Gather Files
+    - name: update jtcores
       run: ./.github/update_jtcores.sh .
       env:
         DB_ID: jtcores
