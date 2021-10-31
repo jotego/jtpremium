@@ -1,0 +1,27 @@
+name: update jtcores
+
+on:
+  schedule:
+  - cron:  "*/20 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Install detox
+      run: sudo apt-get install detox
+
+    - uses: actions/checkout@v2
+      with:
+        ref: develop
+  
+    - name: Gather Files
+      run: ./.github/update_jtcores.sh .
+      env:
+        DB_ID: jtcores
+        DB_URL: https://raw.githubusercontent.com/theypsilon/JT_Cores_MiSTer/jtbin/jtbindb.json.zip
+        REPOSITORY_URL: https://github.com/jotego/jtbin
+        BASE_FILES_URL: https://raw.githubusercontent.com/jotego/jtbin/%s/
+        LATEST_ZIP_URL: https://github.com/theypsilon/JT_Cores_MiSTer/archive/refs/heads/jtbin.zip
