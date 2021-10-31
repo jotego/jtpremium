@@ -3,12 +3,12 @@
 
 set -euo pipefail
 
-curl -o /tmp/update_distribution.source "https://raw.githubusercontent.com/MiSTer-devel/Distribution_MiSTer/main/.github/update_distribution.sh"
+curl -o /tmp/update_distribution.source "https://raw.githubusercontent.com/MiSTer-devel/Distribution_MiSTer/develop/.github/update_distribution.sh"
 
 source /tmp/update_distribution.source
 rm /tmp/update_distribution.source
 
-curl -o /tmp/calculate_db.py "https://raw.githubusercontent.com/MiSTer-devel/Distribution_MiSTer/main/.github/calculate_db.py"
+curl -o /tmp/calculate_db.py "https://raw.githubusercontent.com/MiSTer-devel/Distribution_MiSTer/develop/.github/calculate_db.py"
 chmod +x /tmp/calculate_db.py
 
 update_jtcores() {
