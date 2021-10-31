@@ -25,7 +25,7 @@ jobs:
         ./.github/update_jtcores.sh . --push
       env:
         DB_ID: jtcores
-        DB_URL: https://raw.githubusercontent.com/theypsilon/JT_Cores_MiSTer/jtbin/jtbindb.json.zip
+        DB_URL: https://raw.githubusercontent.com/jotego/jtcores_mister/main/jtbindb.json.zip
         REPOSITORY_URL: https://github.com/jotego/jtbin
         BASE_FILES_URL: https://raw.githubusercontent.com/jotego/jtbin/%s/
-        LATEST_ZIP_URL: https://github.com/theypsilon/JT_Cores_MiSTer/archive/refs/heads/jtbin.zip
+        LATEST_ZIP_URL: https://github.com/jotego/jtcores_mister/archive/refs/heads/jtbin.zip
