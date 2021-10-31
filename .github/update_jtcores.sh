@@ -76,7 +76,7 @@ update_jtcores() {
 }
 
 fetch_core_urls() {
-    CORE_URLS=$(curl -sSLf "https://github.com/jotego/jtbin/wiki"| awk '/wiki-body/,/wiki-rightbar/' | grep -ioE "https://github.com/jotego/jtbin/tree/[a-zA-Z0-9./_-]*")
+    CORE_URLS=$(curl -sSLf "https://github.com/jotego/jtbin/wiki"| awk '/Arcade-Cores-Top/,/Arcade-Cores-Bottom/' | grep -ioE "https://github.com/jotego/jtbin/tree/[a-zA-Z0-9./_-]*")
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]] ; then
