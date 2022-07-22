@@ -29,7 +29,7 @@ db_url = https://raw.githubusercontent.com/jotego/jtcores_mister/main/jtbindb.js
 
 #### List of Tags that you may use with the Downloader Filters:
 
-ALL_TAGS_GO_HERE
+`alternatives`, `arcade`, `arcade-cores`, `arcade-jt1942`, `arcade-jt1943`, `arcade-jtbiocom`, `arcade-jtbtiger`, `arcade-jtbubl`, `arcade-jtcommando`, `arcade-jtcomsc`, `arcade-jtcontra`, `arcade-jtcop`, `arcade-jtcps1`, `arcade-jtcps15`, `arcade-jtcps2`, `arcade-jtdd`, `arcade-jtdd2`, `arcade-jtexed`, `arcade-jtf1dream`, `arcade-jtflane`, `arcade-jtgng`, `arcade-jtgunsmoke`, `arcade-jthige`, `arcade-jtkicker`, `arcade-jtlabrun`, `arcade-jtmidres`, `arcade-jtmikie`, `arcade-jtmx5k`, `arcade-jtninja`, `arcade-jtpang`, `arcade-jtpinpon`, `arcade-jtrastan`, `arcade-jtroadf`, `arcade-jtrumble`, `arcade-jts16`, `arcade-jts16b`, `arcade-jtsarms`, `arcade-jtsbask1`, `arcade-jtsbaskt`, `arcade-jtsectionz`, `arcade-jtsf`, `arcade-jtslyspy`, `arcade-jttora`, `arcade-jttrack`, `arcade-jttrojan`, `arcade-jtvigil`, `arcade-jtvulgus`, `arcade-jtyiear`, `cores`, `hbmame`, `mra`
 
 ### Other Platforms
 
