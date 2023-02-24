@@ -22,22 +22,25 @@ update_jtcores() {
 
     mkdir -p "${OUTPUT_FOLDER}/_Arcade/cores/"
 
+    local IFS=$'\n'
+
     for folder in $(echo "${CORE_URLS[@]}" | sed -n -e 's%^.*tree/master/%%p') ; do
 
-        for bin in $(files_with_stripped_date "${TMP_FOLDER}/${folder}/releases" | uniq) ; do
-            get_latest_release "${TMP_FOLDER}/${folder}" "${bin}"
-            local LAST_RELEASE_FILE="${GET_LATEST_RELEASE_RET}"
-
+        for bin in $(files_with_no_date "${TMP_FOLDER}/${folder}/releases") ; do
+            local LAST_RELEASE_FILE="${bin}"
             if is_not_rbf_release "${LAST_RELEASE_FILE}" ; then
                 continue
             fi
+            if [ ! -f "${TMP_FOLDER}/${folder}/releases/${LAST_RELEASE_FILE}" ] ; then
+                echo "Not found ${TMP_FOLDER}/${folder}/releases/${LAST_RELEASE_FILE}"
+                continue
+            fi
 
+            # for each core it copies the RBF file to _Arcade/cores/
             echo copy_file "${TMP_FOLDER}/${folder}/releases/${LAST_RELEASE_FILE}" "${OUTPUT_FOLDER}/_Arcade/cores/$(basename ${LAST_RELEASE_FILE})"
             copy_file "${TMP_FOLDER}/${folder}/releases/${LAST_RELEASE_FILE}" "${OUTPUT_FOLDER}/_Arcade/cores/$(basename ${LAST_RELEASE_FILE})"
         done
     done
-
-    local IFS=$'\n'
 
     pushd ${TMP_FOLDER}
 
