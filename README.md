@@ -1,4 +1,4 @@
-# JTCORES for MiSTer
+# JTCORES for MiSTer (PREMIUM)
 
 This repository contains all of [Jotego's](https://twitter.com/topapate) cores and related files ready for usage on [MiSTer](https://github.com/MiSTer-devel/Main_MiSTer/wiki).
 
@@ -13,7 +13,7 @@ Downloader development by theypsilon (get him a [Ko-fi](https://ko-fi.com/theyps
 
 ## Download
 
-You may download all of them at once as a zip through the [following link](https://github.com/jotego/jtcores_mister/archive/refs/heads/main.zip). Once you have them, place them as-is in your [properly initialised SD card](https://github.com/MiSTer-devel/mr-fusion), and everything should work out of the box.
+You may download all of them at once as a zip through the [following link](https://github.com/jotego/jtpremium/archive/refs/heads/main.zip). Once you have them, place them as-is in your [properly initialised SD card](https://github.com/MiSTer-devel/mr-fusion), and everything should work out of the box.
 
 The source code for these files is kept in independent repositories [here](https://github.com/jotego).
 
@@ -23,7 +23,7 @@ The [Downloader](https://github.com/MiSTer-devel/Downloader_MiSTer) tool can be 
 
 ```ini
 [jtcores]
-db_url = https://raw.githubusercontent.com/jotego/jtcores_mister/main/jtbindb.json.zip
+db_url = https://raw.githubusercontent.com/jotego/jtpremium/main/jtbindb.json.zip
 
 ```
 

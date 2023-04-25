@@ -1,31 +1,81 @@
 name: update jtcores
 
 on:
-  schedule:
-  - cron:  "*/20 * * * *"
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      DB_ID: jtcores
 
     steps:
     - name: Install apt-get utilities
-      run: sudo apt-get install detox sharutils
+      run: sudo apt-get install sharutils
 
-    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+  
+    - uses: actions/checkout@v3
       with:
         ref: develop
   
-    - name: update jtcores
+    - name: Set Git User
       run: |
-        set -euo pipefail
         git config --global user.email "theypsilon@gmail.com"
         git config --global user.name "The CI/CD Bot"
-        ./.github/update_jtcores.sh . --push
-      env:
-        DB_ID: jtcores
-        DB_URL: https://raw.githubusercontent.com/jotego/jtpremium/main/jtbindb.json.zip
-        BASE_FILES_URL: https://raw.githubusercontent.com/jotego/jtpremium/%s/
-        LATEST_ZIP_URL: https://github.com/jotego/jtpremium/archive/refs/heads/main.zip
 
+    - name: Validate develop
+      run: set -exo pipefail && (( $(find . -type f | wc -l) < 200 ))
+
+    - name: Download jtcores files
+      run: ./.github/download_jtcores.sh .
+
+    - name: Validate jtcores files
+      run: set -exo pipefail && (( $(find . -type f | wc -l) > 200 ))
+
+    - name: Commit jtcores files
+      run: |
+        git status
+        git checkout -f develop -b main
+        git add .
+        git commit -m "-"
+        git fetch origin main || true
+
+    - name: Build Database
+      run: set -o pipefail && curl --fail --location https://raw.githubusercontent.com/MiSTer-devel/Distribution_MiSTer/main/.github/db_operator.py | python3 - build .
+      env:
+        DB_URL: https://raw.githubusercontent.com/jotego/jtpremium/main/jtbindb.json.zip
+        TEST_DB_URL: https://raw.githubusercontent.com/jotego/jtpremium/testing_db/db.json
+        BASE_FILES_URL: https://raw.githubusercontent.com/jotego/jtpremium/%s/
+        DB_JSON_NAME: db.json
+        BROKEN_MRAS_IGNORE: true
+
+    - name: New Database Exists?
+      id: db_exists
+      run: if [ -f "db.json" ] ; then echo "new_db=true" >> "${GITHUB_OUTPUT}" ; fi
+
+    - name: Add jtbeta Filter into jtbindb
+      if: steps.db_exists.outputs.new_db == 'true' 
+      run: .github/add_jtbeta_filter.py
+
+    - name: Test jtbindb
+      if: steps.db_exists.outputs.new_db == 'true' 
+      run: set -o pipefail && curl --fail --location https://raw.githubusercontent.com/MiSTer-devel/Distribution_MiSTer/main/.github/test_database.sh | bash
+      env: 
+        DB_JSON_NAME: jtbindb.json
+
+    - name: Push All
+      if: steps.db_exists.outputs.new_db == 'true' 
+      run: |
+        zip jtbindb.json.zip jtbindb.json
+        git add jtbindb.json.zip README.md
+        git commit -m "-"
+        git checkout --orphan testing_db
+        git reset
+        git add db.json
+        git commit -m "-"
+        git push --force origin main testing_db
