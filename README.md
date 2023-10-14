@@ -5,7 +5,7 @@ This repository contains all of [Jotego's](https://twitter.com/topapate) cores a
 Jotego's arcade cores offer the most accurate arcade experience in modern hardware using FPGA technology.
 
 Please support Jotego's work:
-* Patreon: https://patreon.com/topapate
+* Patreon: https://patreon.com/jotego
 * Paypal: https://paypal.me/topapate
 * Github: https://github.com/sponsors/jotego
 
